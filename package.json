@@ -1,13 +1,14 @@
 {
-  "name": "data-editor-jsonschema",
+  "name": "@oarepo/data-editor-jsonschema",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
+  "main": "oarepo-data-editor-jsonschema.esm.js",
   "dependencies": {
     "@oarepo/data-editor": "^1.0.10",
     "@oarepo/data-renderer": "^1.14.0",
