@@ -8,7 +8,7 @@
           div Quasar v{{ $q.version }}
     q-drawer(v-model='leftDrawerOpen', show-if-above='', bordered='', content-class='bg-grey-2')
       q-list
-        q-expansion-item(header='' label="drawer")
+        q-expansion-item(header='' label="Basic Layouts")
           q-card
             q-card-section
               q-list
