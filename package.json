@@ -9,9 +9,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@oarepo/data-editor": "^1.0.10",
+    "@oarepo/data-renderer": "^1.14.0",
+    "@quasar/extras": "^1.0.0",
     "core-js": "^3.6.4",
+    "jsonpath-plus": "^3.0.0",
+    "lodash.startcase": "^4.4.0",
+    "quasar": "^1.0.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.1.5"
+    "vue-router": "^3.1.5",
+    "vue-runtime-helpers": "^1.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",
@@ -22,6 +29,7 @@
     "@vue/eslint-config-standard": "^5.1.0",
     "@vue/test-utils": "1.0.0-beta.31",
     "babel-eslint": "^10.0.3",
+    "babel-plugin-transform-imports": "1.5.0",
     "chai": "^4.1.2",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.1",
@@ -31,6 +39,7 @@
     "eslint-plugin-vue": "^6.1.2",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
+    "vue-cli-plugin-quasar": "^2.0.0",
     "vue-template-compiler": "^2.6.11"
   }
 }
