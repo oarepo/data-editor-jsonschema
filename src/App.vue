@@ -23,6 +23,11 @@
                     q-icon(name='list')
                   q-item-section
                     q-item-label Simple layout
+                q-item(clickable='' :to="{name: 'complex-layout'}")
+                  q-item-section(avatar='')
+                    q-icon(name='list')
+                  q-item-section
+                    q-item-label Complex layout
     q-page-container
       q-page.q-ma-lg
         router-view(v-bind:displaySchema="displaySchema")
