@@ -21,7 +21,8 @@ import {
   QItemLabel,
   QExpansionItem,
   QCard,
-  QCardSection
+  QCardSection,
+  QRadio
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -42,7 +43,8 @@ Vue.use(Quasar, {
     QItemLabel,
     QExpansionItem,
     QCard,
-    QCardSection
+    QCardSection,
+    QRadio
   },
   directives: {
   },

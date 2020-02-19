@@ -6,6 +6,12 @@
           q-toolbar-title
             | @oarepo/invenio-quasar
           div Quasar v{{ $q.version }}
+        div.q-pa-md
+          div.q-gutter-sm.fixed-top-right
+            q-radio(v-model="displaySchema" val="inline" label="inline")
+            q-radio(v-model="displaySchema" val="block"  label="block")
+            q-radio(v-model="displaySchema" val="table"  label="table")
+            q-radio(v-model="displaySchema" val="flex"  label="flex")
     q-drawer(v-model='leftDrawerOpen', show-if-above='', bordered='', content-class='bg-grey-2')
       q-list
         q-expansion-item(header='' label="Basic Layouts")
@@ -19,7 +25,7 @@
                     q-item-label Simple layout
     q-page-container
       q-page.q-ma-lg
-        router-view
+        router-view(v-bind:displaySchema="displaySchema")
 </template>
 
 <script>
@@ -28,7 +34,8 @@ export default {
   components: {},
   data () {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
+      displaySchema: 'table'
     }
   }
 }
