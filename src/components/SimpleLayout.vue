@@ -1,31 +1,40 @@
 <template lang="pug">
   div
-    pre {{layout}}
-    pre {{currentSchema}}
-    data-renderer(:data="json_file" :layout="layout" :show-empty="false" :schema="currentSchema")
-    p.q-mb-lg.q-mt-lg Original
-    data-renderer(:data="json_file" :schema="currentSchema")
+    // pre {{layout}}
+    p.q-mb-lg.q-mt-lg Applied layout
+    data-renderer(:data="jsonFile" :layout="layout" :showEmpty="true" :schema="currentSchema")
+    p.q-mb-lg.q-mt-lg Original (no layout)
+    data-renderer(:data="jsonFile" :schema="currentSchema")
+    p.q-mb-lg.q-mt-lg Data editor
+    oarepo-record-inplace-editor(:record="jsonFile" :layout="layout" :options="options")
     q-card.child.inline-block-child.version-card.q-ma-lg JSON File
      q-card-section
-       pre.card-content {{json_file}}
+       pre.card-content {{jsonFile}}
     q-card.child.inline-block-child.version-card.q-ma-lg JSON Schema
      q-card-section
-       pre.card-content {{json_schema}}
+       pre.card-content {{jsonSchema}}
 </template>
 
 <script>
-import { SchemaToLayout } from '../../library/services/layout_creator'
+import { SchemaToLayout } from '@oarepo/data-editor-jsonschema'
 
 export default {
   name: 'simple-layout',
   data: function () {
     return {
-      json_file: {
+      jsonFile: {
         firstName: 'John',
         lastName: 'Doe',
         age: 21
       },
-      json_schema: {
+      options: {
+        schema: 'table',
+        extraProps: {
+          submit: this.submit,
+          cancel: this.cancel
+        }
+      },
+      jsonSchema: {
         $id: 'https://example.com/person.schema.json',
         $schema: 'http://json-schema.org/draft-07/schema#',
         title: 'Person',
@@ -45,16 +54,23 @@ export default {
             minimum: 0
           }
         }
-      },
-      schema: 'table'
+      }
     }
   },
   computed: {
     layout () {
-      return new SchemaToLayout(this.json_schema).layout.children
+      return new SchemaToLayout(this.jsonSchema).layout.children
     },
     currentSchema () {
       return this.$attrs.displaySchema
+    }
+  },
+  methods: {
+    submit ({ context, prop, value }) {
+      context[prop] = value
+    },
+    cancel (props) {
+      console.log('cancelling')
     }
   }
 }
