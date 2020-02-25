@@ -3,9 +3,8 @@
     q-header.glossy(elevated='')
       q-toolbar
         q-btn(flat='', dense='', round='', @click='leftDrawerOpen = !leftDrawerOpen', aria-label='Menu', icon='menu')
-          q-toolbar-title
-            | @oarepo/invenio-quasar
-          div Quasar v{{ $q.version }}
+        q-toolbar-title
+          | @oarepo/data-editor-jsonschema
         div.q-pa-md
           div.q-gutter-sm.fixed-top-right
             q-radio(v-model="displaySchema" val="inline" label="inline")

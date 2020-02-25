@@ -1,18 +1,21 @@
 <template lang="pug">
-  div
-    // pre {{layout}}
-    p.q-mb-lg.q-mt-lg Applied layout
-    data-renderer(:data="jsonFile" :layout="layout" :showEmpty="true" :schema="currentSchema")
-    p.q-mb-lg.q-mt-lg Original (no layout)
-    data-renderer(:data="jsonFile" :schema="currentSchema")
-    p.q-mb-lg.q-mt-lg Data editor
-    oarepo-record-inplace-editor(:record="jsonFile" :layout="layout" :options="options")
-    q-card.child.inline-block-child.version-card.q-ma-lg JSON File
-     q-card-section
-       pre.card-content {{jsonFile}}
-    q-card.child.inline-block-child.version-card.q-ma-lg JSON Schema
-     q-card-section
-       pre.card-content {{jsonSchema}}
+  .row
+    .col-4
+      h6.q-mb-lg.q-mt-lg Applied layout
+      data-renderer(:data="record" :layout="layout" :showEmpty="true" :schema="currentSchema")
+      h6.q-mb-lg.q-mt-lg Original (no layout)
+      data-renderer(:data="record" :schema="currentSchema")
+      h6.q-mb-lg.q-mt-lg Data editor
+      oarepo-record-inplace-editor(:record="record" :layout="layout" :options="options")
+      h6.q-mb-lg.q-mt-lg JSON schema data editor component
+      json-schema-data-editor-component(:record="record" :options="options" :jsonSchema="jsonSchema")
+    .col-8.row
+      .col-8
+        h6 JSON Schema
+        pre {{jsonSchema}}
+      .col-4
+        h6 Generated layout
+        pre {{layout}}
 </template>
 
 <script>
@@ -22,7 +25,7 @@ export default {
   name: 'simple-layout',
   data: function () {
     return {
-      jsonFile: {
+      record: {
         firstName: 'John',
         lastName: 'Doe',
         age: 21

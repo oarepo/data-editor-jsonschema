@@ -22,7 +22,8 @@ import {
   QExpansionItem,
   QCard,
   QCardSection,
-  QRadio
+  QRadio,
+  QInput
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -44,7 +45,8 @@ Vue.use(Quasar, {
     QExpansionItem,
     QCard,
     QCardSection,
-    QRadio
+    QRadio,
+    QInput
   },
   directives: {
   },
