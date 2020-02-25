@@ -1,5 +1,5 @@
 <template lang="pug">
-  demo-component(:record="record" :options="options" :jsonSchema="jsonSchema")
+  demo-component(:record="record" :options="options" :jsonSchema="jsonSchema" v-bind="$props")
 </template>
 
 <script>
@@ -8,6 +8,9 @@ import DemoComponent from './DemoComponent'
 export default {
   name: 'complex-layout',
   components: { DemoComponent },
+  props: {
+    displaySchema: String
+  },
   data: function () {
     return {
       record: {

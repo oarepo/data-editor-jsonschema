@@ -29,7 +29,7 @@
                     q-item-label Complex layout
     q-page-container
       q-page.q-ma-lg
-        router-view(v-bind:displaySchema="displaySchema")
+        router-view(:displaySchema="displaySchema")
 </template>
 
 <script>
