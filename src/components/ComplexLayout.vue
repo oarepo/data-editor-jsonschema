@@ -1,28 +1,13 @@
 <template lang="pug">
-  .row
-    .col-4
-      h6.q-mb-lg.q-mt-lg Applied layout
-      data-renderer(:data="record" :layout="layout" :showEmpty="true" :schema="currentSchema")
-      h6.q-mb-lg.q-mt-lg Original (no layout)
-      data-renderer(:data="record" :schema="currentSchema")
-      h6.q-mb-lg.q-mt-lg Data editor
-      oarepo-record-inplace-editor(:record="record" :layout="layout" :options="options")
-      h6.q-mb-lg.q-mt-lg JSON schema data editor component
-      json-schema-data-editor-component(:record="record" :options="options" :jsonSchema="jsonSchema")
-    .col-8.row
-      .col-8
-        h6 JSON Schema
-        pre {{jsonSchema}}
-      .col-4
-        h6 Generated layout
-        pre {{layout}}
+  demo-component(:record="record" :options="options" :jsonSchema="jsonSchema")
 </template>
 
 <script>
-import { SchemaToLayout } from '../../library/services/layout_creator'
+import DemoComponent from './DemoComponent'
 
 export default {
   name: 'complex-layout',
+  components: { DemoComponent },
   data: function () {
     return {
       record: {
@@ -94,14 +79,6 @@ export default {
       }
     }
   },
-  computed: {
-    layout () {
-      return new SchemaToLayout(this.jsonSchema).layout.children
-    },
-    currentSchema () {
-      return this.$attrs.displaySchema
-    }
-  },
   methods: {
     submit ({ path, context, prop, value, op, pathValues }) {
       if (op === 'add') {
@@ -127,19 +104,5 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-  .version-card
-    max-width 300px;
-    width: 100%
-    min-width 200px
-
-  .version-detail
-    max-width 600px
-
-  .inline-block-child
-    display: inline-block
-
-  .card-content
-    max-width: 300px;
-    white-space: pre-wrap
+<style scoped>
 </style>
