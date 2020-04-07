@@ -1,15 +1,9 @@
 <template lang="pug">
   .row
     .col-4
-      h6.q-mb-lg.q-mt-lg Applied layout
-      data-renderer(:data="record" :layout="layout" :showEmpty="true" :schema="currentSchema")
-      h6.q-mb-lg.q-mt-lg Original (no layout)
-      data-renderer(:data="record" :schema="currentSchema")
-      h6.q-mb-lg.q-mt-lg Data editor
-      oarepo-record-inplace-editor(:record="record" :layout="layout" :options="currentOptions" :schema="currentSchema")
       h6.q-mb-lg.q-mt-lg JSON schema data editor component
       json-schema-data-editor-component(:record="record" :options="currentOptions" :jsonSchema="jsonSchema")
-    .col-8.row
+    .col-4.row
       .col-8
         h6 JSON Schema
         pre {{jsonSchema}}
@@ -34,7 +28,7 @@ export default {
   },
   computed: {
     layout () {
-      return new SchemaToLayout(this.jsonSchema).layout.children
+      return new SchemaToLayout(this.jsonSchema).layout
     },
     currentSchema () {
       return this.displaySchema
