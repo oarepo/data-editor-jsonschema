@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  oarepo-record-inplace-editor(:record="record" :layout="currentLayout" :options="options")
+  data-editor-component(:record="record" :layout="currentLayout" :options="options")
 </template>
 
 <script>
@@ -21,7 +21,11 @@ export default {
   },
   computed: {
     currentLayout () {
-      return new SchemaToLayout(this.jsonSchema).layout.children
+      const layout = new SchemaToLayout(this.jsonSchema).layout
+      if (this.options.showEmpty) {
+        layout.children[0].showEmpty = true
+      }
+      return layout.children[0]
     }
   }
 }

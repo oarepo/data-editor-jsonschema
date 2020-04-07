@@ -23,6 +23,12 @@ class SchemaToLayout {
       }
     }
     if (schema.additionalProperties) {
+      if (schema.additionalProperties.type === 'object') {
+        return {
+          prop: path,
+          children: this.convertObjProps(schema.additionalProperties.properties)
+        }
+      }
       return {
         prop: path
       }
