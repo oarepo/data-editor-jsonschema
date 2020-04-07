@@ -3,8 +3,9 @@
 </template>
 
 <script>
-
+import Vue from 'vue'
 import DemoComponent from './DemoComponent'
+
 export default {
   name: 'simple-layout',
   components: { DemoComponent },
@@ -13,17 +14,14 @@ export default {
   },
   data: function () {
     return {
-      record: {
-        firstName: 'John',
-        lastName: 'Doe',
-        age: 21
-      },
+      record: {},
       options: {
         schema: 'table',
         extraProps: {
           submit: this.submit,
           cancel: this.cancel
-        }
+        },
+        showEmpty: true
       },
       jsonSchema: {
         $id: 'https://example.com/person.schema.json',
@@ -50,7 +48,8 @@ export default {
   },
   methods: {
     submit ({ context, prop, value }) {
-      context[prop] = value
+      console.log({ context, prop, value })
+      Vue.set(context, prop, value)
     },
     cancel (props) {
       console.log('cancelling')

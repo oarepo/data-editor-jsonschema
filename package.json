@@ -10,8 +10,8 @@
   },
   "main": "oarepo-data-editor-jsonschema.esm.js",
   "dependencies": {
-    "@oarepo/data-editor": "^1.0.13",
-    "@oarepo/data-renderer": "^1.15.1",
+    "@oarepo/data-editor": "^2.1.0",
+    "@oarepo/data-renderer": "^2.3.0",
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.6.4",
     "jsonpath-plus": "^3.0.0",

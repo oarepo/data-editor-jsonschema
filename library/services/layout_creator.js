@@ -1,11 +1,15 @@
 class SchemaToLayout {
   constructor (schema) {
-    this.layout = this.convert('', schema)
+    this.layout = {
+      children: [this.convert(schema.type, schema)]
+    }
   }
 
   convert (path, schema) {
     if (schema.type === 'object') {
       return this.convertObj(path, schema)
+    } else if (schema.type === 'array') {
+      return this.convertArr(path, schema)
     } else {
       return this.convertStr(path)
     }
@@ -14,31 +18,57 @@ class SchemaToLayout {
   convertObj (path, schema) {
     if (schema.properties) {
       return {
-        path: path,
+        prop: path,
         children: this.convertObjProps(schema.properties)
       }
-    } if (schema.additionalProperties) {
+    }
+    if (schema.additionalProperties) {
       return {
-        label: path,
-        path: path
+        prop: path
       }
     }
   }
 
   convertArr (path, schema) {
-    if (schema.properties) {
+    if (Array.isArray(schema.items)) {
+      const arrayChildren = this.convertArrItems(schema.items)
       return {
-        path: path,
-        children: this.convertObjProps(schema.properties)
+        prop: path,
+        children: [
+          {
+            prop: path,
+            children: arrayChildren
+          }
+        ]
       }
+    }
+    if (schema.items.type === 'object') {
+      return {
+        prop: path,
+        item: {
+          children: this.convertObjProps(schema.items.properties)
+        }
+      }
+    }
+    return {
+      prop: path,
+      item: {}
     }
   }
 
   convertStr (path) {
     return {
-      label: path,
-      path: path
+      prop: path
     }
+  }
+
+  convertArrItems (items) {
+    return items.map(item => {
+      return Object.getOwnPropertyNames(item).filter(k => !k.startsWith('__')).map(k => {
+        const val = item[k]
+        return this.convert(k, val)
+      })
+    }).flat()
   }
 
   convertObjProps (props) {
@@ -48,4 +78,5 @@ class SchemaToLayout {
     })
   }
 }
+
 export { SchemaToLayout }

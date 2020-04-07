@@ -27,6 +27,11 @@
                     q-icon(name='list')
                   q-item-section
                     q-item-label Complex layout
+                q-item(clickable='' :to="{name: 'complex-array-layout'}")
+                  q-item-section(avatar='')
+                    q-icon(name='list')
+                  q-item-section
+                    q-item-label Complex array layout
     q-page-container
       q-page.q-ma-lg
         router-view(:displaySchema="displaySchema")

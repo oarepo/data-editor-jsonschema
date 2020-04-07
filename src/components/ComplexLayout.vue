@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import DemoComponent from './DemoComponent'
 
 export default {
@@ -13,48 +14,11 @@ export default {
   },
   data: function () {
     return {
-      record: {
-        id: 1,
-        work: {
-          id: 10,
-          name: 'Miroirs',
-          composer: {
-            id: 100,
-            name: 'Maurice Ravel',
-            functions: ['Composer']
-          }
-        },
-        recording_artists: [
-          {
-            id: 101,
-            name: 'Alexandre Tharaud',
-            functions: ['Piano']
-          },
-          {
-            id: 102,
-            name: 'Jean-Martial Golaz',
-            functions: ['Engineer', 'Producer']
-          }
-        ]
-      },
+      record: {},
       jsonSchema: {
-        $schema: 'http://json-schema.org/draft-07/schema#',
+        $schema: 'http://json-schema.org/draft-04/schema#',
         title: 'Schema for a recording',
         type: 'object',
-        definitions: {
-          artist: {
-            type: 'object',
-            properties: {
-              id: { type: 'number' },
-              name: { type: 'string' },
-              functions: {
-                type: 'array',
-                items: { type: 'string' }
-              }
-            },
-            required: ['id', 'name', 'functions']
-          }
-        },
         properties: {
           id: { type: 'number' },
           work: {
@@ -62,12 +26,34 @@ export default {
             properties: {
               id: { type: 'number' },
               name: { type: 'string' },
-              composer: { $ref: '#/definitions/artist' }
+              composer: {
+                type: 'object',
+                properties: {
+                  id: { type: 'number' },
+                  name: { type: 'string' },
+                  functions: {
+                    type: 'array',
+                    items: { type: 'string' }
+                  }
+                },
+                required: ['id', 'name', 'functions']
+              }
             }
           },
           recording_artists: {
             type: 'array',
-            items: { $ref: '#/definitions/artist' }
+            items: {
+              type: 'object',
+              properties: {
+                id: { type: 'number' },
+                name: { type: 'string' },
+                functions: {
+                  type: 'array',
+                  items: { type: 'string' }
+                }
+              },
+              required: ['id', 'name', 'functions']
+            }
           }
         },
         required: ['id', 'work', 'recording_artists']
@@ -87,6 +73,8 @@ export default {
       if (op === 'add') {
         if (Array.isArray(context)) {
           context.push(value)
+        } else {
+          Vue.set(context, prop, value)
         }
       }
       if (op === 'replace') {
