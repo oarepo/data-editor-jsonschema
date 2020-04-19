@@ -1,5 +1,5 @@
-import { SchemaToLayout } from './services/layout_creator'
-import JSONSchemaDataEditorComponent from './components/JSONSchemaDataEditorComponent'
+import { SchemaToLayout } from './services/layout_creator.js'
+import JSONSchemaDataEditorComponent from './components/JSONSchemaDataEditorComponent.vue'
 
 export default {
   install (Vue, options) {
