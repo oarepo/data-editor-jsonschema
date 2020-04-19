@@ -7,7 +7,7 @@ import Vue from 'vue'
 import DemoComponent from './DemoComponent'
 
 export default {
-  name: 'simple-layout',
+  name: 'simple-schema-demo',
   components: { DemoComponent },
   props: {
     displaySchema: String

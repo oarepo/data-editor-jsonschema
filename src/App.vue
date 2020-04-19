@@ -17,21 +17,26 @@
           q-card
             q-card-section
               q-list
-                q-item(clickable='' :to="{name: 'simple-layout'}")
+                q-item(clickable='' :to="{name: 'simple-schema-demo'}")
                   q-item-section(avatar='')
                     q-icon(name='list')
                   q-item-section
-                    q-item-label Simple layout
-                q-item(clickable='' :to="{name: 'complex-layout'}")
+                    q-item-label Simple schema
+                q-item(clickable='' :to="{name: 'array-schema-demo'}")
                   q-item-section(avatar='')
                     q-icon(name='list')
                   q-item-section
-                    q-item-label Complex layout
-                q-item(clickable='' :to="{name: 'complex-array-layout'}")
+                    q-item-label Array schema
+                q-item(clickable='' :to="{name: 'object-schema-demo'}")
                   q-item-section(avatar='')
                     q-icon(name='list')
                   q-item-section
-                    q-item-label Complex array layout
+                    q-item-label Object schema
+                q-item(clickable='' :to="{name: 'complex-schema-demo'}")
+                  q-item-section(avatar='')
+                    q-icon(name='list')
+                  q-item-section
+                    q-item-label Complex schema
     q-page-container
       q-page.q-ma-lg
         router-view(:displaySchema="displaySchema")

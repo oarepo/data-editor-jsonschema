@@ -48,7 +48,7 @@ class SchemaToLayout {
         ]
       }
     }
-    if (schema.items.type === 'object') {
+    if (schema.items && schema.items.type === 'object') {
       return {
         prop: path,
         item: {
@@ -69,9 +69,11 @@ class SchemaToLayout {
   }
 
   convertArrItems (items) {
+    console.log('arrItems', items)
     return items.map(item => {
       return Object.getOwnPropertyNames(item).filter(k => !k.startsWith('__')).map(k => {
         const val = item[k]
+        console.log('arrItems', val, k)
         return this.convert(k, val)
       })
     }).flat()

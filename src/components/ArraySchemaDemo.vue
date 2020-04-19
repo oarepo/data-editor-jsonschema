@@ -7,20 +7,14 @@ import DemoComponent from './DemoComponent'
 import Vue from 'vue'
 
 export default {
-  name: 'complex-array-layout',
+  name: 'array-schema-demo',
   components: { DemoComponent },
   props: {
     displaySchema: String
   },
   data: function () {
     return {
-      record: {
-        complexArray: [
-          { a: 1 },
-          { a: 2 },
-          { a: 3 }
-        ]
-      },
+      record: {},
       options: {
         schema: 'table',
         extraProps: {
@@ -33,12 +27,8 @@ export default {
         $schema: 'http://json-schema.org/draft-07/schema#',
         type: 'object',
         properties: {
-          complexArray: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: { a: { type: 'string' } }
-            }
+          phone: {
+            type: 'array'
           }
         }
       }
@@ -53,9 +43,11 @@ export default {
           Vue.set(context, prop, value)
         }
       }
+      console.log('submit', context, prop, value, op, context[prop])
       if (op === 'replace') {
         context[prop] = value
       }
+      console.log('submit', context, prop, value, op, context[prop])
       if (op === 'remove') {
         if (Array.isArray(context)) {
           context.splice(prop, 1)

@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import SimpleLayout from '../components/SimpleLayout'
-import ComplexLayout from '../components/ComplexLayout'
-import ComplexArrayLayout from '../components/ComplexArrayLayout'
+import SimpleSchemaDemo from '../components/SimpleSchemaDemo'
+import ComplexSchemaDemo from '../components/ComplexSchemaDemo'
+import ArraySchemaDemo from '../components/ArraySchemaDemo'
+import ObjectSchemaDemo from '../components/ObjectSchemaDemo'
 
 Vue.use(VueRouter)
 
@@ -10,22 +11,27 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    redirect: SimpleLayout
+    redirect: SimpleSchemaDemo
   },
   {
-    path: '/simple-layout',
-    name: 'simple-layout',
-    component: SimpleLayout
+    path: '/simple-schema-demo',
+    name: 'simple-schema-demo',
+    component: SimpleSchemaDemo
   },
   {
-    path: '/complex-layout',
-    name: 'complex-layout',
-    component: ComplexLayout
+    path: '/complex-schema-demo',
+    name: 'complex-schema-demo',
+    component: ComplexSchemaDemo
   },
   {
-    path: '/complex-array-layout',
-    name: 'complex-array-layout',
-    component: ComplexArrayLayout
+    path: '/array-schema-demo',
+    name: 'array-schema-demo',
+    component: ArraySchemaDemo
+  },
+  {
+    path: '/object-schema-demo',
+    name: 'object-schema-demo',
+    component: ObjectSchemaDemo
   }
 ]
 

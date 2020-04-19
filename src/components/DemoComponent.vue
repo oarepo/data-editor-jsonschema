@@ -1,15 +1,20 @@
 <template lang="pug">
-  .row
-    .col-4
+  div
+    q-toggle(v-model="onlyData") show only data
+    div(v-if="onlyData")
       h6.q-mb-lg.q-mt-lg JSON schema data editor component
-      json-schema-data-editor-component(:record="record" :options="currentOptions" :jsonSchema="jsonSchema")
-    .col-4.row
-      .col-8
-        h6 JSON Schema
-        pre {{jsonSchema}}
+      json-schema-data-editor-component(:record="record" :path-layouts="currentPathLayouts" :options="currentOptions" :jsonSchema="jsonSchema" :editor-components="editorComponents")
+    .row(v-else)
       .col-4
-        h6 Generated layout
-        pre {{layout}}
+        h6.q-mb-lg.q-mt-lg JSON schema data editor component
+        json-schema-data-editor-component(:record="record" :path-layouts="currentPathLayouts" :options="currentOptions" :jsonSchema="jsonSchema" :editor-components="editorComponents")
+      .col-4.row
+        .col-8
+          h6 JSON Schema
+          pre {{jsonSchema}}
+        .col-4
+          h6 Generated layout
+          pre {{layout}}
 </template>
 
 <script>
@@ -24,9 +29,22 @@ export default {
       type: Object,
       default: () => ({})
     },
-    displaySchema: String
+    pathLayouts: Object,
+    displaySchema: String,
+    editorComponents: {
+      type: Object,
+      default: () => ({})
+    }
+  },
+  data () {
+    return {
+      onlyData: false
+    }
   },
   computed: {
+    currentPathLayouts () {
+      return this.pathLayouts || {}
+    },
     layout () {
       return new SchemaToLayout(this.jsonSchema).layout
     },

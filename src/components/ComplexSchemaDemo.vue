@@ -7,7 +7,7 @@ import Vue from 'vue'
 import DemoComponent from './DemoComponent'
 
 export default {
-  name: 'complex-layout',
+  name: 'complex-schema-demo',
   components: { DemoComponent },
   props: {
     displaySchema: String
@@ -16,7 +16,7 @@ export default {
     return {
       record: {},
       jsonSchema: {
-        $schema: 'http://json-schema.org/draft-04/schema#',
+        $schema: 'http://json-schema.org/draft-07/schema#',
         title: 'Schema for a recording',
         type: 'object',
         properties: {

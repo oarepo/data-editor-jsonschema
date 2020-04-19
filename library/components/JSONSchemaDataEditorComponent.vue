@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  data-editor-component(:record="record" :layout="currentLayout" :options="options")
+  data-editor-component(:record="record" :layout="currentLayout" :path-layouts="pathLayouts" :options="options" :editor-components="editorComponents")
 </template>
 
 <script>
@@ -14,10 +14,12 @@ export default {
     layout: {
       type: [Array, Function, Object]
     },
+    pathLayouts: Object,
     options: {
       type: Object,
       default: () => ({})
-    }
+    },
+    editorComponents: Object
   },
   computed: {
     currentLayout () {

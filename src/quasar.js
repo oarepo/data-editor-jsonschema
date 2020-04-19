@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import './styles/quasar.styl'
-import 'quasar/dist/quasar.ie.polyfills'
+// import 'quasar/dist/quasar.ie.polyfills'
 import '@quasar/extras/roboto-font/roboto-font.css'
 import '@quasar/extras/material-icons/material-icons.css'
 import {
@@ -24,7 +24,13 @@ import {
   QCardSection,
   QRadio,
   QInput,
-  QCheckbox
+  QCheckbox,
+  Dialog,
+  QForm,
+  QDialog,
+  QCardActions,
+  QToggle,
+  QSelect
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -48,10 +54,16 @@ Vue.use(Quasar, {
     QCardSection,
     QRadio,
     QInput,
-    QCheckbox
+    QCheckbox,
+    QForm,
+    QDialog,
+    QCardActions,
+    QToggle,
+    QSelect
   },
   directives: {
   },
   plugins: {
+    Dialog
   }
 })
