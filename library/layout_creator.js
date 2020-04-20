@@ -1,11 +1,23 @@
 class SchemaToLayout {
-  constructor (schema) {
-    this.layout = {
-      children: [this.convert(schema.type, schema)]
-    }
+  constructor (schema, typeLayouts, options) {
+    options = { showEmpty: true, ...(options || {}) }
+    this.options = options
+    this.typeLayouts = typeLayouts || {}
+    this.layout = this.convert(schema.type, schema)
+    this.layout.showEmpty = options.showEmpty
   }
 
   convert (path, schema) {
+    let type = schema.type
+    const id = schema.$id
+    if (id !== undefined) {
+      if (id.includes('#')) {
+        type = id.split('#')[1]
+      }
+    }
+    if (this.typeLayouts[type] !== undefined) {
+      return this.typeLayouts[type]
+    }
     if (schema.type === 'object') {
       return this.convertObj(path, schema)
     } else if (schema.type === 'array') {
@@ -85,4 +97,8 @@ class SchemaToLayout {
   }
 }
 
-export { SchemaToLayout }
+function schemaToLayout (schema, typeLayouts, options) {
+  return new SchemaToLayout(schema, typeLayouts, options).layout
+}
+
+export { SchemaToLayout, schemaToLayout }

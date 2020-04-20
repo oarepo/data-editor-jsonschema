@@ -10,8 +10,6 @@
   },
   "main": "oarepo-data-editor-jsonschema.esm.js",
   "dependencies": {
-    "@oarepo/data-editor": "^2.2.0",
-    "@oarepo/data-renderer": "^2.3.0",
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.6.4",
     "jsonpath-plus": "^3.0.0",
@@ -22,6 +20,8 @@
     "vue-runtime-helpers": "^1.1.2"
   },
   "devDependencies": {
+    "@oarepo/data-editor": "^2.2.0",
+    "@oarepo/data-renderer": "^2.3.0",
     "@vue/cli-plugin-babel": "^4.2.0",
     "@vue/cli-plugin-eslint": "^4.2.0",
     "@vue/cli-plugin-router": "^4.2.0",
