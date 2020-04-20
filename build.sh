@@ -13,3 +13,5 @@ cat ../package.json | $json -e "delete this.scripts; delete this.devDependencies
 cp ../README.md dist
 mv dist ..
 
+
+3
